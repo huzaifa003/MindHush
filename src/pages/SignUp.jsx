@@ -19,9 +19,12 @@ import { FaGoogle } from "react-icons/fa";
 import { LuKey, LuMail, LuUser } from "react-icons/lu";
 import { Field } from "@/components/ui/field";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
+import { useAuth } from "@/context/AuthContext";
 
 const SignUpPage = () => {
+	const { login } = useAuth();
+	const navigate = useNavigate();
 	const flexDirection = useBreakpointValue({ base: "column", md: "row" });
 	const formWidth = useBreakpointValue({ base: "100%", md: "40%" });
 	const formAlignItems = useBreakpointValue({ base: "center" });
@@ -30,6 +33,11 @@ const SignUpPage = () => {
 		md: "flex-start",
 	});
 	const logoWidth = useBreakpointValue({ base: "100px", md: "150px" });
+
+	const handleSubmit = () => {
+		login();
+		navigate("/");
+	};
 
 	return (
 		<Container maxW='100vw' h='100vh' p={0} position='relative'>
@@ -143,7 +151,8 @@ const SignUpPage = () => {
 									color='white'
 									_hover={{ bg: "teal.600" }}
 									rounded='2xl'
-									mt={2}>
+									mt={2}
+									onClick={handleSubmit}>
 									Register Account
 								</Button>
 

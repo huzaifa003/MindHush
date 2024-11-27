@@ -17,9 +17,13 @@ import { FaGoogle, FaFacebook } from "react-icons/fa";
 import { InputGroup } from "@/components/ui/input-group";
 import { LuKey, LuMail } from "react-icons/lu";
 import { PasswordInput } from "@/components/ui/password-input";
+import { useAuth } from "@/context/AuthContext";
+import { useNavigate } from "react-router";
 
 const SignInPage = () => {
-	// Responsive values for the layout
+	const { isAuthenticated, login } = useAuth();
+	const navigate = useNavigate();
+
 	const flexDirection = useBreakpointValue({ base: "column", md: "row" });
 	const formWidth = useBreakpointValue({ base: "100%", md: "40%" });
 	const formAlignItems = useBreakpointValue({ base: "center" });
@@ -28,6 +32,11 @@ const SignInPage = () => {
 		md: "flex-start",
 	});
 	const logoWidth = useBreakpointValue({ base: "120px", md: "150px" });
+
+	const handleSubmit = () => {
+		login();
+		navigate("/");
+	};
 
 	return (
 		<Container maxW='100vw' h='100vh' p={0} position='relative'>
@@ -107,11 +116,7 @@ const SignInPage = () => {
 								</InputGroup>
 
 								{/* Password Input */}
-								<InputGroup
-									flex='1'
-									startElement={<LuKey />}
-									w='full'
-									size='lg'>
+								<InputGroup flex='1' startElement={<LuKey />} w='full'>
 									<PasswordInput
 										placeholder='Password'
 										size='lg'
@@ -133,7 +138,8 @@ const SignInPage = () => {
 									_hover={{
 										opacity: 0.9,
 									}}
-									mt={2}>
+									mt={2}
+									onClick={handleSubmit}>
 									Sign in
 								</Button>
 
