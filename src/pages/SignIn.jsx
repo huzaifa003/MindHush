@@ -5,135 +5,176 @@ import {
 	Container,
 	Flex,
 	Heading,
+	Image,
 	Input,
+	Separator,
 	Text,
 	VStack,
-	useColorModeValue,
+	useBreakpointValue,
+	HStack,
 } from "@chakra-ui/react";
 import { FaGoogle, FaFacebook } from "react-icons/fa";
-
-const Spiral = () => (
-	<svg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'>
-		<defs>
-			<linearGradient id='spiralGradient' x1='0%' y1='0%' x2='100%' y2='100%'>
-				<stop offset='0%' stopColor='#2DD4BF' />
-				<stop offset='100%' stopColor='#A855F7' />
-			</linearGradient>
-		</defs>
-		<path
-			d='M200,200 m-150,0 a150,150 0 1,0 300,0 a150,150 0 1,0 -300,0 Z'
-			fill='none'
-			stroke='url(#spiralGradient)'
-			strokeWidth='40'
-			transform='rotate(45 200 200)'>
-			<animateTransform
-				attributeName='transform'
-				type='rotate'
-				from='0 200 200'
-				to='360 200 200'
-				dur='20s'
-				repeatCount='indefinite'
-			/>
-		</path>
-		<circle cx='200' cy='200' r='80' fill='#2DD4BF' opacity='0.3' />
-		<circle cx='200' cy='200' r='40' fill='#A855F7' opacity='0.3' />
-	</svg>
-);
+import { InputGroup } from "@/components/ui/input-group";
+import { LuKey, LuMail } from "react-icons/lu";
+import { PasswordInput } from "@/components/ui/password-input";
 
 const SignInPage = () => {
-	const bgColor = useColorModeValue("gray.900", "gray.900");
-	const textColor = useColorModeValue("white", "white");
+	// Responsive values for the layout
+	const flexDirection = useBreakpointValue({ base: "column", md: "row" });
+	const formWidth = useBreakpointValue({ base: "100%", md: "40%" });
+	const formAlignItems = useBreakpointValue({ base: "center" });
+	const formJustifyContent = useBreakpointValue({
+		base: "center",
+		md: "flex-start",
+	});
+	const logoWidth = useBreakpointValue({ base: "120px", md: "150px" });
 
 	return (
-		<Container maxW='100vw' h='100vh' p={0} bg={bgColor}>
-			<Flex h='full'>
-				{/* Left side with spiral animation */}
-				<Box w='50%' position='relative' overflow='hidden'>
-					<Box
-						position='absolute'
-						top='50%'
-						left='50%'
-						transform='translate(-50%, -50%)'
+		<Container maxW='100vw' h='100vh' p={0} position='relative'>
+			{/* Flexbox layout */}
+			<Flex
+				h='full'
+				direction={flexDirection}
+				align={formAlignItems}
+				justify={formJustifyContent}>
+				{/* Left side with image */}
+				<Box
+					w={{ base: "100%", md: "60%" }}
+					h='full'
+					display={{ base: "none", md: "flex" }}
+					alignItems='center'
+					justifyContent='center'
+					position='relative'
+					overflow='hidden'>
+					<Image
+						src='/signin-bg.png'
+						alt='Sign-in Illustration'
+						objectFit='cover'
 						w='full'
 						h='full'
-						opacity={0.8}>
-						<Spiral />
-					</Box>
+						scale={1.1}
+					/>
 				</Box>
 
-				{/* Right side with sign in form */}
-				<Flex
-					w='50%'
-					direction='column'
-					justify='center'
-					p={12}
-					color={textColor}>
-					<VStack spacing={8} align='stretch' maxW='400px' mx='auto'>
-						<Heading size='2xl' mb={6}>
-							SIGN IN
-						</Heading>
-
-						<Text mb={4}>Sign in with email address</Text>
-
-						<VStack spacing={4}>
-							<Input
-								placeholder='Yourname@gmail.com'
-								size='lg'
-								variant='filled'
-								bg='gray.800'
-								_hover={{ bg: "gray.700" }}
-								_focus={{ bg: "gray.700" }}
-							/>
-
-							<Input
-								type='password'
-								placeholder='Password'
-								size='lg'
-								variant='filled'
-								bg='gray.800'
-								_hover={{ bg: "gray.700" }}
-								_focus={{ bg: "gray.700" }}
-							/>
-
-							<Button
-								w='full'
-								size='lg'
-								bg='linear-gradient(to right, #A855F7, #2DD4BF)'
-								_hover={{
-									opacity: 0.9,
-								}}>
-								Sign up
-							</Button>
-						</VStack>
-
-						<Box textAlign='center' pt={4}>
-							<Text mb={4}>Or continue with</Text>
-							<Flex gap={4} justify='center'>
-								<Button
-									leftIcon={<FaGoogle />}
-									variant='outline'
-									size='lg'
-									flex={1}>
-									Google
-								</Button>
-								<Button
-									leftIcon={<FaFacebook />}
-									variant='outline'
-									size='lg'
-									flex={1}>
-									Facebook
-								</Button>
-							</Flex>
+				{/* Right side with form */}
+				<Box
+					w={formWidth}
+					p={{ base: 6, md: 8 }}
+					h='100vh'
+					my='auto'
+					overflowY='auto'>
+					<VStack maxW='400px' mx='auto' gapY={10}>
+						{/* Logo */}
+						<Box
+							alignSelf='flex-start'
+							w={logoWidth}
+							mt={{ base: 10, md: 0 }}
+							mb={10}>
+							<Image src='/logo.png' alt='Company Logo' />
 						</Box>
 
-						<Text fontSize='sm' textAlign='center'>
-							By registering you with our{" "}
-							<Text as='span' color='purple.400'>
-								Terms and Conditions
-							</Text>
-						</Text>
+						<VStack align='stretch' spaceY={{ base: 6, md: 8 }} w='full'>
+							{/* Form Header */}
+							<Box textAlign='left'>
+								<Heading
+									color='white'
+									fontWeight='bold'
+									fontSize={{ base: "2xl", sm: "3xl", md: "5xl" }}
+									mb={10}>
+									SIGN IN
+								</Heading>
+								<Text color='gray.400' fontSize={{ base: "sm", md: "md" }}>
+									Sign in with your email address
+								</Text>
+							</Box>
+
+							{/* Form Fields */}
+							<VStack gapY={4} align='stretch'>
+								{/* Email Input */}
+								<InputGroup
+									flex='1'
+									startElement={<LuMail />}
+									w='full'
+									size='lg'>
+									<Input
+										placeholder='Yourname@gmail.com'
+										size='lg'
+										variant='filled'
+										bg='secondary.50'
+										border='1px solid #8692A6'
+										w='full'
+									/>
+								</InputGroup>
+
+								{/* Password Input */}
+								<InputGroup
+									flex='1'
+									startElement={<LuKey />}
+									w='full'
+									size='lg'>
+									<PasswordInput
+										placeholder='Password'
+										size='lg'
+										variant='filled'
+										bg='secondary.50'
+										border='1px solid #8692A6'
+										w='full'
+									/>
+								</InputGroup>
+
+								{/* Sign In Button */}
+								<Button
+									w='full'
+									size='lg'
+									color='white'
+									rounded='xl'
+									border='none'
+									bg='linear-gradient(to right, #7B2C97, #008080)'
+									_hover={{
+										opacity: 0.9,
+									}}
+									mt={2}>
+									Sign in
+								</Button>
+
+								{/* Separator */}
+								<Separator my={4} borderColor='secondary.30' />
+
+								<Text fontSize='sm'>Or continue with</Text>
+
+								{/* Social Login Buttons */}
+								<HStack gap={4} justify='center' w='full'>
+									<Button
+										variant='outline'
+										size='lg'
+										bg='gray.800'
+										_hover={{ bg: "gray.700" }}
+										flex='1'>
+										<FaGoogle style={{ marginRight: "8px" }} />
+										Google
+									</Button>
+									<Button
+										variant='outline'
+										size='lg'
+										bg='gray.800'
+										_hover={{ bg: "gray.700" }}
+										flex='1'>
+										<FaFacebook style={{ marginRight: "8px" }} />
+										Facebook
+									</Button>
+								</HStack>
+
+								{/* Terms and Conditions */}
+								<Text fontSize='sm' mt={4}>
+									By registering you agree to our{" "}
+									<Text as='span' color='purple.400'>
+										Terms and Conditions
+									</Text>
+								</Text>
+							</VStack>
+						</VStack>
 					</VStack>
-				</Flex>
+				</Box>
 			</Flex>
 		</Container>
 	);

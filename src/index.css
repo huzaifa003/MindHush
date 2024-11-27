@@ -1,0 +1,21 @@
+/* Body Styling */
+body {
+	background-color: #202227; /* Dark background */
+	color: #fff; /* Default text color for contrast */
+	line-height: 1.6;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+::-webkit-scrollbar {
+	width: 4px;
+}
+
+::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+	background: #282a2f;
+	border-radius: 24px;
+}
