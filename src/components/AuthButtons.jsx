@@ -19,8 +19,8 @@ export default function AuthButtons() {
 		<HStack>
 			{isAuthenticated ? (
 				<>
-					<Avatar name='Saadaan Hassan'>
-						<Float placement='bottom-end' offsetX='1' offsetY='1'>
+					<Avatar name='Linda Blair' src='/avatar.png'>
+						<Float placement='bottom-end' offsetX='2' offsetY='1'>
 							<Circle
 								bg='green.500'
 								size='8px'
@@ -29,7 +29,7 @@ export default function AuthButtons() {
 							/>
 						</Float>
 					</Avatar>
-					<Text>Saadaan Hassan</Text>
+					<Text>Linda Blair</Text>
 					<MenuRoot>
 						<MenuTrigger asChild>
 							<Button variant='plain' size='sm'>

@@ -12,7 +12,7 @@ import {
 	SimpleGrid,
 } from "@chakra-ui/react";
 import AuthButtons from "@/components/AuthButtons";
-import PriceCard from "@/components/ui/PriceCard";
+import PriceCard from "@/components/PriceCard";
 import PricingFeature from "@/components/PricingFeature";
 
 const PricingPlans = () => {

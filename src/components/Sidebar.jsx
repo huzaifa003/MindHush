@@ -3,14 +3,16 @@ import { Box, VStack, HStack, Image, Button, Text } from "@chakra-ui/react";
 import { BsChatSquareText, BsStars } from "react-icons/bs";
 import { FiExternalLink } from "react-icons/fi";
 import { LuPlus, LuMessageCircle } from "react-icons/lu";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { useAuth } from "@/context/AuthContext";
 import { ProgressRoot, ProgressBar, ProgressValueText } from "./ui/progress";
 
-const Sidebar = ({ categorizedChats, activeChat, setActiveChat, isDrawer }) => {
+const Sidebar = ({ categorizedChats, activeChat, setActiveChat }) => {
 	const { isAuthenticated } = useAuth();
+	const navigate = useNavigate();
 	return (
 		<Box
+			alignSelf='flex-start'
 			h='100vh'
 			w={{ base: "100%", md: "350px" }}
 			bg='linear-gradient(to right, #222529, #282A2F)'
@@ -24,7 +26,11 @@ const Sidebar = ({ categorizedChats, activeChat, setActiveChat, isDrawer }) => {
 				</Box>
 
 				{/* New Chat Button */}
-				<Button variant='outline' border='1px solid #616161' rounded='2xl'>
+				<Button
+					variant='outline'
+					border='1px solid #616161'
+					rounded='2xl'
+					onClick={() => navigate("/")}>
 					<LuPlus style={{ marginRight: "2px" }} />
 					Start New
 				</Button>

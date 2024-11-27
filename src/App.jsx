@@ -11,7 +11,8 @@ const App = () => {
 			{/* <Header /> */}
 			<Box as='main' flex='1' overflow='hidden'>
 				<Routes>
-					<Route path='/' element={<Dashboard />} />
+					<Route path='/' element={<Dashboard isNewChart={true} />} />
+					<Route path='/c/:id' element={<Dashboard />} />
 					<Route path='/login' element={<SignInPage />} />
 					<Route path='/signup' element={<SignUpPage />} />
 					<Route path='/pricing-plans' element={<PricingPlans />} />
