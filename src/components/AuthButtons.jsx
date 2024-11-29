@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/menu";
 import { FaCaretDown } from "react-icons/fa";
 import { LuLogOut, LuUser } from "react-icons/lu";
+import UserProfileModal from "./UserProfileModal";
 
 export default function AuthButtons() {
 	const { isAuthenticated, logout } = useAuth();
@@ -37,11 +38,8 @@ export default function AuthButtons() {
 							</Button>
 						</MenuTrigger>
 						<MenuContent minW='10rem'>
-							<MenuItem value='profile' cursor='pointer'>
-								<LuUser />
-								Profile
-							</MenuItem>
-							<MenuItem value='logout' cursor='pointer' onClick={logout}>
+							<UserProfileModal />
+							<MenuItem value='logout' cursor='pointer' onClick={logout} py={2}>
 								<LuLogOut />
 								Logout
 							</MenuItem>

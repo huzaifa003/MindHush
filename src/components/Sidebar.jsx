@@ -6,6 +6,7 @@ import { LuPlus, LuMessageCircle } from "react-icons/lu";
 import { Link, useNavigate } from "react-router";
 import { useAuth } from "@/context/AuthContext";
 import { ProgressRoot, ProgressBar, ProgressValueText } from "./ui/progress";
+import EarnReferModal from "./EarnReferModal";
 
 const Sidebar = ({ categorizedChats, activeChat, setActiveChat }) => {
 	const { isAuthenticated } = useAuth();
@@ -17,9 +18,10 @@ const Sidebar = ({ categorizedChats, activeChat, setActiveChat }) => {
 			w={{ base: "100%", md: "350px" }}
 			bg='linear-gradient(to right, #222529, #282A2F)'
 			p={4}
-			position='relative'
-			overflowY='auto'>
-			<VStack align='stretch' spacing={4}>
+			display='flex'
+			flexDirection='column'>
+			{/* Header Section */}
+			<VStack align='stretch' spacing={4} flexShrink={0}>
 				{/* Logo */}
 				<Box alignSelf='flex-start' w='80px' mb={10}>
 					<Image src='/logo.png' alt='Company Logo' />
@@ -34,68 +36,65 @@ const Sidebar = ({ categorizedChats, activeChat, setActiveChat }) => {
 					<LuPlus style={{ marginRight: "2px" }} />
 					Start New
 				</Button>
-
-				{/* Chat List */}
-				{isAuthenticated && (
-					<VStack
-						align='stretch'
-						overflowY='auto'
-						maxH={{ base: "300px", lg: "400px" }}>
-						{Object.entries(categorizedChats).map(
-							([category, chats]) =>
-								chats.length > 0 && (
-									<Box key={category}>
-										<Text fontSize='sm' color='gray.400' mt={4}>
-											{category}
-										</Text>
-										{chats.map((chat) => (
-											<Button
-												key={chat.id}
-												variant='ghost'
-												justifyContent='flex-start'
-												bg={activeChat === chat.id ? "gray.900" : "#25282C"}
-												size='sm'
-												w='full'
-												rounded='xl'
-												my={1}
-												onClick={() => setActiveChat(chat.id)}>
-												<BsChatSquareText />
-												{chat.name}
-											</Button>
-										))}
-									</Box>
-								)
-						)}
-					</VStack>
-				)}
 			</VStack>
 
-			{/* Footer Links */}
-			<Box mt={10} w='100%'>
+			{/* Chat List Section */}
+			{isAuthenticated && (
+				<VStack align='stretch' overflowY='auto' flex='1' spacing={0} mt={4}>
+					{Object.entries(categorizedChats).map(
+						([category, chats]) =>
+							chats.length > 0 && (
+								<Box key={category}>
+									<Text fontSize='sm' color='gray.400' mt={4}>
+										{category}
+									</Text>
+									{chats.map((chat) => (
+										<Button
+											key={chat.id}
+											variant='ghost'
+											justifyContent='flex-start'
+											bg={activeChat === chat.id ? "gray.900" : "#25282C"}
+											size='sm'
+											w='full'
+											rounded='xl'
+											my={1}
+											onClick={() => setActiveChat(chat.id)}>
+											<BsChatSquareText />
+											{chat.name}
+										</Button>
+									))}
+								</Box>
+							)
+					)}
+				</VStack>
+			)}
+
+			{/* Footer Section */}
+			<Box mt='auto'>
 				{isAuthenticated && (
 					<VStack
 						w='full'
 						px={5}
 						py={4}
-						mb={5}
+						my={2}
 						bg='#7A50764D'
 						rounded='2xl'
 						border='1px solid #B55CFF'>
-						<HStack justifyContent='space-between' w='100%' mb={2}>
-							<HStack wrap='wrap' justifyContent='center'>
+						<VStack alignItems='flex-start' w='100%' mb={2}>
+							<HStack>
 								<Text fontSize='xs' fontWeight='bold'>
 									500
 								</Text>
 								<Text fontSize='xs'>Tokens Used</Text>
 							</HStack>
 
-							<HStack wrap='wrap' justifyContent='center'>
+							<HStack>
 								<Text fontSize='xs' fontWeight='bold'>
 									500
 								</Text>
 								<Text fontSize='xs'>Tokens Left</Text>
 							</HStack>
-						</HStack>
+						</VStack>
 
 						<ProgressRoot
 							colorPalette='teal'
@@ -110,14 +109,10 @@ const Sidebar = ({ categorizedChats, activeChat, setActiveChat }) => {
 						</ProgressRoot>
 					</VStack>
 				)}
+
 				<VStack gap={2} px={2}>
 					<HStack alignSelf='flex-start'>
-						<Link to='#'>
-							<Box display='flex' alignItems='center'>
-								<FiExternalLink style={{ marginRight: "8px" }} />
-								Earn and Refer
-							</Box>
-						</Link>
+						<EarnReferModal />
 					</HStack>
 					<HStack alignSelf='flex-start'>
 						<Link to='#'>
