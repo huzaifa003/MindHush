@@ -12,6 +12,8 @@ import { FiMoreVertical } from "react-icons/fi";
 import { LuUser } from "react-icons/lu";
 import { useAuth } from "@/context/AuthContext";
 import { MenuItem } from "./ui/menu";
+import TokensBox from "./TokensBox";
+import { Link } from "react-router";
 
 const UserProfileModal = () => {
 	const { logout } = useAuth();
@@ -26,26 +28,66 @@ const UserProfileModal = () => {
 				</MenuItem>
 			</DialogTrigger>
 			<DialogContent
-				bg='linear-gradient(180deg, #6B4177 0%, #3A3A3A 100%)'
+				bg='secondary.50'
 				borderRadius='3xl'
 				p={0}
 				overflow='hidden'>
 				<DialogHeader p={0}>
 					<Box position='relative' w='full'>
 						{/* Profile Image and Name Section */}
-						<HStack spacing={4} pt={8} pb={6} px={6} alignItems='flex-end'>
+						<HStack gap={4} pt={8} pb={6} px={6} alignItems='flex-end'>
 							<Box
 								borderRadius='full'
-								border='2px'
-								borderColor='purple.300'
+								border='2px solid'
+								borderColor='white'
 								overflow='hidden'
-								w='120px'
-								h='120px'>
+								w='150px'
+								h='150px'>
 								<Image src='/avatar.png' alt='Profile' w='full' />
 							</Box>
-							<Text fontSize='2xl' color='white' fontWeight='semibold'>
-								Linda Blair
-							</Text>
+							<VStack alignItems='flex-start'>
+								<Text
+									fontSize='3xl'
+									color='white'
+									fontWeight='semibold'
+									mb={4}
+									textShadow='1px 1px 16px #FFFFFFa1'>
+									Linda Blair
+								</Text>
+
+								<Text color='whiteAlpha.700' fontSize='xs' fontWeight='bold'>
+									ABOUT ME
+								</Text>
+
+								<VStack align='start'>
+									<HStack>
+										<Text color='whiteAlpha' fontWeight='bold' fontSize='xs'>
+											Username:
+										</Text>
+										<Text color='white' fontSize='xs'>
+											Linda Blair
+										</Text>
+									</HStack>
+
+									<HStack>
+										<Text color='whiteAlpha' fontWeight='bold' fontSize='xs'>
+											Email:
+										</Text>
+										<Text color='white' fontSize='xs'>
+											abc@gmail.com
+										</Text>
+									</HStack>
+
+									<HStack>
+										<Text color='whiteAlpha' fontWeight='bold' fontSize='xs'>
+											Subscription Plan:
+										</Text>
+										<Text color='white' fontSize='xs'>
+											Freemium Plan
+										</Text>
+									</HStack>
+								</VStack>
+							</VStack>
 						</HStack>
 
 						{/* More Options Button */}
@@ -60,46 +102,33 @@ const UserProfileModal = () => {
 				<DialogBody p={0}>
 					{/* User Info Content */}
 					<Box p={6} border='1px solid white' borderLeft={0} borderRight={0}>
-						<HStack spacing={0} mb={4} gap={10}>
-							<Text color='whiteAlpha' fontSize='lg'>
-								User Info
-							</Text>
-							<Text color='whiteAlpha' fontSize='lg'>
-								Pricing Plan
-							</Text>
+						<HStack mb={4} gap={10}>
+							<TokensBox />
+							<VStack gap={2} px={2} w='100%'>
+								<Text color='whiteAlpha' fontSize='lg'>
+									Limit Exceeded?
+								</Text>
+								<Link to='/pricing-plans' style={{ width: "100%" }}>
+									<Button
+										size='sm'
+										bg='primary'
+										color='white'
+										rounded='lg'
+										w='100%'>
+										Upgrade
+									</Button>
+								</Link>
+							</VStack>
 						</HStack>
-						<Text color='whiteAlpha.700' mb={2} fontSize='xs' fontWeight='bold'>
-							ABOUT ME
-						</Text>
-
-						<VStack align='start' spacing={4}>
-							<HStack alignItems='center'>
-								<Text color='whiteAlpha' fontWeight='bold' fontSize='xs'>
-									Username:
-								</Text>
-								<Text color='white' fontSize='xs'>
-									Linda Blair
-								</Text>
-							</HStack>
-
-							<HStack alignItems='center'>
-								<Text color='whiteAlpha' fontWeight='bold' fontSize='xs'>
-									Password:
-								</Text>
-								<Text color='white' fontSize='xs'>
-									********
-								</Text>
-							</HStack>
-						</VStack>
 					</Box>
 
 					{/* Log Out Button */}
 					<Box p={6} pt={0}>
 						<Button
 							variant='link'
-							color='whiteAlpha.600'
+							color='red'
 							px={0}
-							_hover={{ color: "white" }}
+							_hover={{ color: "red.600" }}
 							onClick={logout}>
 							Log Out
 						</Button>

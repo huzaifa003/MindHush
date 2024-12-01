@@ -1,12 +1,11 @@
 import React from "react";
 import { Box, VStack, HStack, Image, Button, Text } from "@chakra-ui/react";
 import { BsChatSquareText, BsStars } from "react-icons/bs";
-import { FiExternalLink } from "react-icons/fi";
 import { LuPlus, LuMessageCircle } from "react-icons/lu";
 import { Link, useNavigate } from "react-router";
 import { useAuth } from "@/context/AuthContext";
-import { ProgressRoot, ProgressBar, ProgressValueText } from "./ui/progress";
 import EarnReferModal from "./EarnReferModal";
+import TokensBox from "./TokensBox";
 
 const Sidebar = ({ categorizedChats, activeChat, setActiveChat }) => {
 	const { isAuthenticated } = useAuth();
@@ -71,44 +70,7 @@ const Sidebar = ({ categorizedChats, activeChat, setActiveChat }) => {
 
 			{/* Footer Section */}
 			<Box mt='auto'>
-				{isAuthenticated && (
-					<VStack
-						w='full'
-						px={5}
-						py={4}
-						my={2}
-						bg='#7A50764D'
-						rounded='2xl'
-						border='1px solid #B55CFF'>
-						<VStack alignItems='flex-start' w='100%' mb={2}>
-							<HStack>
-								<Text fontSize='xs' fontWeight='bold'>
-									500
-								</Text>
-								<Text fontSize='xs'>Tokens Used</Text>
-							</HStack>
-
-							<HStack>
-								<Text fontSize='xs' fontWeight='bold'>
-									500
-								</Text>
-								<Text fontSize='xs'>Tokens Left</Text>
-							</HStack>
-						</VStack>
-
-						<ProgressRoot
-							colorPalette='teal'
-							defaultValue={70}
-							maxW='sm'
-							size='sm'
-							w='100%'>
-							<HStack>
-								<ProgressValueText>70%</ProgressValueText>
-								<ProgressBar flex='1' rounded='full' />
-							</HStack>
-						</ProgressRoot>
-					</VStack>
-				)}
+				{isAuthenticated && <TokensBox />}
 
 				<VStack gap={2} px={2}>
 					<HStack alignSelf='flex-start'>

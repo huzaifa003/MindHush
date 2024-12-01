@@ -179,6 +179,13 @@ const SignUpPage = () => {
 									<FaGoogle style={{ marginRight: "8px" }} />
 									Register with Google
 								</Button>
+
+								<Text fontSize='sm' textAlign='center' color='gray.400'>
+									Already have an account?{" "}
+									<Text as='span' color='purple.600'>
+										<Link to='/login'>Sign in</Link>
+									</Text>
+								</Text>
 							</VStack>
 						</VStack>
 					</VStack>
@@ -192,15 +199,14 @@ const SignUpPage = () => {
 					alignItems='center'
 					justifyContent='center'
 					position='relative'
-					overflow='hidden'
-					p={{ base: 5, md: 8 }}>
+					overflow='hidden'>
 					<Image
-						src='/signup-bg.png'
-						alt='AI Assistant Illustration'
+						src='/signin-bg.png'
+						alt='Sign-in Illustration'
 						objectFit='cover'
 						w='full'
 						h='full'
-						borderRadius={{ base: "none", md: "18px" }}
+						scale={1.1}
 					/>
 				</Box>
 			</Flex>

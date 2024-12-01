@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { InputGroup } from "./ui/input-group";
-import { LuArrowUp, LuPaperclip } from "react-icons/lu";
+import { LuArrowUp } from "react-icons/lu";
 import { IconButton, Input } from "@chakra-ui/react";
 import { useNavigate } from "react-router";
 
@@ -31,16 +31,15 @@ export default function InputArea({
 			w='full'
 			maxW={{ base: widthOnSS, md: widthOnLS }}
 			mb={4}
-			startElement={<LuPaperclip color='white' />}
 			endElement={
 				<IconButton
 					variant='plain'
-					bg='#FAFAFA4D'
+					bg='primary'
 					rounded='full'
 					size='xs'
 					onClick={handleSendMessage}
 					aria-label='Send Message'>
-					<LuArrowUp color='black' size={30} />
+					<LuArrowUp size={30} />
 				</IconButton>
 			}>
 			<Input

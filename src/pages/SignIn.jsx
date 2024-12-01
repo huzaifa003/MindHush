@@ -18,7 +18,7 @@ import { InputGroup } from "@/components/ui/input-group";
 import { LuKey, LuMail } from "react-icons/lu";
 import { PasswordInput } from "@/components/ui/password-input";
 import { useAuth } from "@/context/AuthContext";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 const SignInPage = () => {
 	const { isAuthenticated, login } = useAuth();
@@ -31,7 +31,7 @@ const SignInPage = () => {
 		base: "center",
 		md: "flex-start",
 	});
-	const logoWidth = useBreakpointValue({ base: "120px", md: "150px" });
+	const logoWidth = useBreakpointValue({ base: "120px", md: "120px" });
 
 	const handleSubmit = () => {
 		login();
@@ -40,6 +40,9 @@ const SignInPage = () => {
 
 	return (
 		<Container maxW='100vw' h='100vh' p={0} position='relative'>
+			<Box alignSelf='flex-start' w={logoWidth} mx={10} mt={4} mb={0}>
+				<Image src='/logo.png' alt='Company Logo' />
+			</Box>
 			{/* Flexbox layout */}
 			<Flex
 				h='full'
@@ -49,51 +52,62 @@ const SignInPage = () => {
 				{/* Left side with image */}
 				<Box
 					w={{ base: "100%", md: "60%" }}
-					h='full'
+					h='90%'
 					display={{ base: "none", md: "flex" }}
+					alignSelf='stretch'
 					alignItems='center'
 					justifyContent='center'
 					position='relative'
-					overflow='hidden'>
+					overflow='hidden'
+					p={5}>
 					<Image
-						src='/signin-bg.png'
-						alt='Sign-in Illustration'
+						src='/signup-bg.png'
+						alt='AI Assistant Illustration'
 						objectFit='cover'
 						w='full'
 						h='full'
-						scale={1.1}
+						borderRadius={{ base: "none", md: "18px" }}
 					/>
 				</Box>
 
 				{/* Right side with form */}
 				<Box
 					w={formWidth}
-					p={{ base: 6, md: 8 }}
+					py={{ base: 6, md: 8 }}
+					px={{ base: 6, md: 0 }}
 					h='100vh'
 					my='auto'
-					overflowY='auto'>
+					overflowY='auto'
+					css={{
+						"&::-webkit-scrollbar-thumb": {
+							background: "transparent",
+						},
+					}}>
 					<VStack maxW='400px' mx='auto' gapY={10}>
-						{/* Logo */}
-						<Box
-							alignSelf='flex-start'
-							w={logoWidth}
-							mt={{ base: 10, md: 0 }}
-							mb={10}>
-							<Image src='/logo.png' alt='Company Logo' />
-						</Box>
-
 						<VStack align='stretch' spaceY={{ base: 6, md: 8 }} w='full'>
 							{/* Form Header */}
 							<Box textAlign='left'>
 								<Heading
 									color='white'
 									fontWeight='bold'
-									fontSize={{ base: "2xl", sm: "3xl", md: "5xl" }}
-									mb={10}>
+									fontSize={{ base: "4xl", md: "6xl" }}
+									mb={10}
+									mt={{ base: 6, md: 0 }}>
 									SIGN IN
 								</Heading>
-								<Text color='gray.400' fontSize={{ base: "sm", md: "md" }}>
+								<Text
+									color='white'
+									fontWeight='bold'
+									fontSize={{ base: "sm", md: "md" }}
+									mb={4}>
 									Sign in with your email address
+								</Text>
+
+								<Text fontSize='sm' color='gray.400'>
+									Dont have account ?{" "}
+									<Text as='span' color='purple.600'>
+										<Link to='/signup'>Register</Link>
+									</Text>
 								</Text>
 							</Box>
 

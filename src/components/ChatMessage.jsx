@@ -4,28 +4,7 @@ const ChatMessage = ({ message, isUser, time }) => (
 	<HStack
 		w='full'
 		alignItems='flex-start'
-		justifyContent={isUser ? "flex-start" : "flex-end"}>
-		{isUser && (
-			<Image
-				src='/avatar.png'
-				alt='User avatar'
-				boxSize='40px'
-				borderRadius='full'
-				mr={2}
-			/>
-		)}
-		<Box
-			maxW='80%'
-			color='white'
-			p={4}
-			border='1px solid'
-			borderColor={isUser ? "#B55CFF" : "white"}
-			borderRadius='2xl'
-			borderTopLeftRadius={isUser ? "0" : "2xl"}
-			borderTopRightRadius={isUser ? "2xl" : "0"}
-			position='relative'>
-			<Text>{message}</Text>
-		</Box>
+		justifyContent={isUser ? "flex-end" : "flex-start"}>
 		{!isUser && (
 			<Image
 				src='/favicon.png'
@@ -33,6 +12,26 @@ const ChatMessage = ({ message, isUser, time }) => (
 				boxSize='40px'
 				borderRadius='full'
 				ml={2}
+			/>
+		)}
+		<Box
+			maxW='80%'
+			color='white'
+			px={3}
+			py={2}
+			bg={isUser ? "#7A50764D" : "#FFFFFF1A"}
+			borderRadius='2xl'
+			position='relative'>
+			<Text>{message}</Text>
+		</Box>
+
+		{isUser && (
+			<Image
+				src='/avatar.png'
+				alt='User avatar'
+				boxSize='40px'
+				borderRadius='full'
+				mr={2}
 			/>
 		)}
 	</HStack>
