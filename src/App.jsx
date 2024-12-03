@@ -4,6 +4,7 @@ import SignInPage from "./pages/SignIn";
 import SignUpPage from "./pages/SignUp";
 import PricingPlans from "./pages/PricingPlans";
 import Dashboard from "./pages/Dashboard";
+import LandingPage from "./pages/LandingPage";
 
 const App = () => {
 	return (
@@ -11,7 +12,8 @@ const App = () => {
 			{/* <Header /> */}
 			<Box as='main' flex='1' overflow='hidden'>
 				<Routes>
-					<Route path='/' element={<Dashboard isNewChart={true} />} />
+					<Route path='/' element={<LandingPage />} />
+					<Route path='/c/new' element={<Dashboard isNewChart={true} />} />
 					<Route path='/c/:id' element={<Dashboard />} />
 					<Route path='/login' element={<SignInPage />} />
 					<Route path='/signup' element={<SignUpPage />} />

@@ -36,7 +36,7 @@ const SignUpPage = () => {
 
 	const handleSubmit = () => {
 		login();
-		navigate("/");
+		navigate("/c/new");
 	};
 
 	return (

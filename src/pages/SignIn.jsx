@@ -35,7 +35,7 @@ const SignInPage = () => {
 
 	const handleSubmit = () => {
 		login();
-		navigate("/");
+		navigate("/c/new");
 	};
 
 	return (

@@ -2,7 +2,6 @@ import React from "react";
 import {
 	Box,
 	Container,
-	Flex,
 	Heading,
 	Text,
 	VStack,
@@ -12,26 +11,11 @@ import {
 	SimpleGrid,
 } from "@chakra-ui/react";
 import AuthButtons from "@/components/AuthButtons";
-import PriceCard from "@/components/PriceCard";
 import PricingFeature from "@/components/PricingFeature";
+import PricingCards from "@/components/PricingCards";
+import { PRICING_PLANS } from "@/constants";
 
 const PricingPlans = () => {
-	const pricingPlans = [
-		{
-			title: "Freemium",
-			price: "0.00",
-			description:
-				"Get a taste of free membership and enjoy tokens limited to 1000 per day",
-		},
-		{
-			title: "Preemium",
-			price: "999",
-			originalPrice: "1000",
-			description: "Enjoy access to pro member features and unlimited chats",
-			isPopular: true,
-		},
-	];
-
 	const features = [
 		{
 			text: "Multiple Chats",
@@ -83,11 +67,7 @@ const PricingPlans = () => {
 						</Text>
 					</VStack>
 
-					<Flex gap={8} wrap='wrap' justify='center' maxWidth='100%'>
-						{pricingPlans.map((plan, index) => (
-							<PriceCard key={index} {...plan} />
-						))}
-					</Flex>
+					<PricingCards pricingPlans={PRICING_PLANS} />
 
 					<Box width='100%' mt={16}>
 						<HStack mb={8}>

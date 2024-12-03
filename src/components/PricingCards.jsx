@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Button, HStack, Text, VStack } from "@chakra-ui/react";
+import { Box, Button, HStack, Text, VStack, Flex } from "@chakra-ui/react";
 
 const PriceCard = ({ title, price, description, isPopular, originalPrice }) => {
 	return (
@@ -70,4 +70,12 @@ const PriceCard = ({ title, price, description, isPopular, originalPrice }) => {
 	);
 };
 
-export default PriceCard;
+export default function PricingCards({ pricingPlans }) {
+	return (
+		<Flex gap={8} wrap='wrap' justify='center' maxWidth='100%' p={4}>
+			{pricingPlans.map((plan, index) => (
+				<PriceCard key={index} {...plan} />
+			))}
+		</Flex>
+	);
+}

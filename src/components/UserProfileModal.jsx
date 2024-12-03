@@ -13,10 +13,17 @@ import { LuUser } from "react-icons/lu";
 import { useAuth } from "@/context/AuthContext";
 import { MenuItem } from "./ui/menu";
 import TokensBox from "./TokensBox";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 const UserProfileModal = () => {
 	const { logout } = useAuth();
+	const navigate = useNavigate();
+
+	const handleLogout = () => {
+		logout();
+		navigate("/login");
+	};
+
 	return (
 		<DialogRoot size='md' placement='center'>
 			<DialogTrigger asChild>
@@ -129,7 +136,7 @@ const UserProfileModal = () => {
 							color='red'
 							px={0}
 							_hover={{ color: "red.600" }}
-							onClick={logout}>
+							onClick={handleLogout}>
 							Log Out
 						</Button>
 					</Box>

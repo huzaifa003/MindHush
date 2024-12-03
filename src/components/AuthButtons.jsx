@@ -1,7 +1,7 @@
 import React from "react";
 import { Circle, Float, HStack, Text } from "@chakra-ui/react";
 import { Button } from "./ui/button";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { useAuth } from "@/context/AuthContext";
 import { Avatar } from "./ui/avatar";
 import {
@@ -11,11 +11,18 @@ import {
 	MenuTrigger,
 } from "@/components/ui/menu";
 import { FaCaretDown } from "react-icons/fa";
-import { LuLogOut, LuUser } from "react-icons/lu";
+import { LuLogOut } from "react-icons/lu";
 import UserProfileModal from "./UserProfileModal";
 
 export default function AuthButtons() {
 	const { isAuthenticated, logout } = useAuth();
+	const navigate = useNavigate();
+
+	const handleLogout = () => {
+		logout();
+		navigate("/login");
+	};
+
 	return (
 		<HStack>
 			{isAuthenticated ? (
@@ -39,7 +46,11 @@ export default function AuthButtons() {
 						</MenuTrigger>
 						<MenuContent minW='10rem'>
 							<UserProfileModal />
-							<MenuItem value='logout' cursor='pointer' onClick={logout} py={2}>
+							<MenuItem
+								value='logout'
+								cursor='pointer'
+								onClick={handleLogout}
+								py={2}>
 								<LuLogOut />
 								Logout
 							</MenuItem>

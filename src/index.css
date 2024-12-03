@@ -1,3 +1,7 @@
+html {
+	scroll-behavior: smooth;
+}
+
 /* Body Styling */
 body {
 	background-color: #202227; /* Dark background */

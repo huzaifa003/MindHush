@@ -62,7 +62,7 @@ const ChattingArea = () => {
 			</VStack>
 
 			{/* Message Input */}
-			<Box w='full' pt={4} zIndex={10}>
+			<Box w='full' pt={0} zIndex={10}>
 				<InputArea
 					widthOnSS='full'
 					widthOnLS='full'
