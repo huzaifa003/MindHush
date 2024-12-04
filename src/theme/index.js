@@ -14,6 +14,12 @@ const customConfig = defineConfig({
 				brand: {},
 			},
 		},
+		keyframes: {
+			scrollAnimation: {
+				from: { transform: "translateY(0)" },
+				to: { transform: "translateY(-100%)" },
+			},
+		},
 	},
 });
 

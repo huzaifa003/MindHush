@@ -1,15 +1,15 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import { Box, Grid, Heading, Text, VStack, Image } from "@chakra-ui/react";
 
 const FeatureCard = ({ icon, title, description }) => {
 	return (
 		<VStack gap={6} mb={8} _last={{ mb: 0 }} alignItems='flex-start'>
-			<Image src={icon} alt={title} w={{ base: 16, md: 20 }} />
+			<Image src={icon} alt={title} w={{ base: 12, md: 16, lg: 20 }} />
 			<VStack alignItems='flex-start' maxW='sm'>
-				<Heading size={{ base: "lg", md: "xl" }} color='white' mb={2}>
+				<Heading size={{ base: "md", md: "lg", lg: "xl" }} color='white' mb={2}>
 					{title}
 				</Heading>
-				<Text color='gray.400' fontSize={{ base: "sm", md: "md" }}>
+				<Text color='gray.400' fontSize={{ base: "sm", md: "md", lg: "lg" }}>
 					{description}
 				</Text>
 			</VStack>
@@ -35,7 +35,7 @@ const AboutUsSection = () => {
 			icon: "/icons/book_icon.svg",
 			title: "Technology and Screen Time",
 			description:
-				"Help you Find balance and strategies to manage digital habits for a healthier, more mindful lifestyle",
+				"Help you find balance and strategies to manage digital habits for a healthier, more mindful lifestyle",
 		},
 		{
 			icon: "/icons/people_icon.svg",
@@ -57,58 +57,42 @@ const AboutUsSection = () => {
 		},
 	];
 
-	const leftRef = useRef(null);
-
-	useEffect(() => {
-		const handleScroll = () => {
-			const scrollPosition = window.scrollY;
-			const leftElement = leftRef.current;
-
-			if (leftElement) {
-				leftElement.style.transform = `translateY(${scrollPosition}px)`;
-			}
-		};
-
-		window.addEventListener("scroll", handleScroll);
-
-		return () => {
-			window.removeEventListener("scroll", handleScroll);
-		};
-	}, []);
-
 	return (
 		<Box bg='#09090C' id='about-us' position='relative' zIndex={3}>
 			<Grid
 				templateColumns={{ base: "1fr", md: "1fr 1fr" }}
-				minH='100vh'
+				templateRows={{ base: "auto auto", md: "1fr" }}
+				minH={{ base: "100vh", md: "auto" }}
 				justifyItems='center'
-				p={{ base: 4, md: 12 }}>
-				{/* Left Side - Fixed Content */}
+				gap={8}>
+				{/* Left Side - Static Content */}
 				<VStack
-					p={4}
-					ref={leftRef}
+					p={{ base: 4, md: 12 }}
 					position={{ base: "static", md: "sticky" }}
 					top={0}
 					align='flex-start'
-					h={{ base: "auto", md: "100vh" }}
-					overflow='hidden'>
+					w='full'
+					h='auto'>
 					<Image
 						src='/stars_bg.svg'
 						alt='Background Stars'
 						position='absolute'
-						top={0}
+						top={-10}
 						left={0}
 						zIndex={0}
 						w={{ base: "100%", md: "50%" }}
 						opacity={0.4}
 					/>
 					<Box>
-						<Heading color='white' size={{ base: "2xl", md: "4xl" }} mb={4}>
+						<Heading
+							color='white'
+							size={{ base: "xl", md: "2xl", lg: "4xl" }}
+							mb={4}>
 							About Us?
 						</Heading>
 						<Text
 							color='gray.400'
-							fontSize={{ base: "md", lg: "lg" }}
+							fontSize={{ base: "sm", md: "md", lg: "lg" }}
 							lineHeight='tall'>
 							We believe that mental well-being is a right, not a privilege. Our
 							mission is to provide accessible, compassionate, and effective
@@ -117,29 +101,25 @@ const AboutUsSection = () => {
 							our AI-powered chatbot is here to guide you towards inner peace
 							and resilience. Whether you're looking for a listening ear,
 							practical coping strategies, or just a safe space to express your
-							feelings, we're here for you—24/7
+							feelings, we're here for you—24/7.
 						</Text>
 					</Box>
 				</VStack>
 
 				{/* Right Side - Scrollable Content */}
 				<Box
-					overflowY='auto'
+					position='relative'
 					w='full'
+					h={{ base: "80vh", md: "auto" }}
 					p={{ base: 4, md: 12 }}
-					css={{
-						"&::-webkit-scrollbar": {
-							width: "4px",
-						},
-						"&::-webkit-scrollbar-track": {
-							background: "transparent",
-						},
-						"&::-webkit-scrollbar-thumb": {
-							background: "transparent",
-						},
-					}}>
-					<VStack align='stretch'>
-						{features.map((feature, index) => (
+					overflow='hidden'>
+					<VStack
+						align='stretch'
+						gap={8}
+						position='absolute'
+						w='full'
+						animation={`scrollAnimation 30s linear infinite`}>
+						{features.concat(features).map((feature, index) => (
 							<FeatureCard
 								key={index}
 								icon={feature.icon}
