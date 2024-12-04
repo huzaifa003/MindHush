@@ -24,8 +24,10 @@ import { PRICING_PLANS } from "@/constants";
 import BlogsSection from "@/components/BlogsSection";
 import FeaturesSection from "@/components/FeaturesSection";
 import Logo from "@/components/Logo";
+import { useNavigate } from "react-router";
 
 const LandingPage = () => {
+	const navigate = useNavigate();
 	return (
 		<Box
 			bg='#040608'
@@ -141,14 +143,16 @@ const LandingPage = () => {
 								bg='primary'
 								color='white'
 								rounded='full'
-								_hover={{ bg: "teal.500" }}>
+								_hover={{ bg: "teal.500" }}
+								onClick={() => navigate("/login")}>
 								Get Started
 							</Button>
 							<Button
 								bg='gray.800'
 								color='white'
 								rounded='full'
-								_hover={{ bg: "gray.700" }}>
+								_hover={{ bg: "gray.700" }}
+								onClick={() => navigate("/pricing-plans")}>
 								View Pricing
 							</Button>
 						</Stack>
