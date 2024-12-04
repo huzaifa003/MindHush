@@ -23,6 +23,7 @@ import PricingCards from "@/components/PricingCards";
 import { PRICING_PLANS } from "@/constants";
 import BlogsSection from "@/components/BlogsSection";
 import FeaturesSection from "@/components/FeaturesSection";
+import Logo from "@/components/Logo";
 
 const LandingPage = () => {
 	return (
@@ -179,17 +180,17 @@ const LandingPage = () => {
 						<StepCard
 							title='Get Registered'
 							description='Get registered and get your identity'
-							image='/steps/step-1.jpg'
+							image='/steps/step-1.svg'
 						/>
 						<StepCard
 							title='Talk Your Heart Out'
 							description='Write as many prompts you want to talk your heart out'
-							image='/steps/step-2.jpg'
+							image='/steps/step-2.svg'
 						/>
 						<StepCard
 							title='Step into a calmer happier you'
 							description="You'll get the best response and solution"
-							image='/steps/step-3.jpg'
+							image='/steps/step-3.svg'
 						/>
 					</Grid>
 				</Box>
@@ -268,14 +269,7 @@ const LandingPage = () => {
 						{/* Left Column */}
 						<Box>
 							{/* Logo Section */}
-							<Flex align='center' mb={8}>
-								<Image
-									src='/logo.png' // Replace with actual logo path
-									alt='Mind Hush'
-									h='40px'
-									mr={3}
-								/>
-							</Flex>
+							<Logo />
 
 							{/* Description */}
 							<Text color='gray.400' mb={8} maxW='400px'>

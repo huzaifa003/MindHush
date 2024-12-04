@@ -7,7 +7,7 @@ const ChatMessage = ({ message, isUser, time }) => (
 		justifyContent={isUser ? "flex-end" : "flex-start"}>
 		{!isUser && (
 			<Image
-				src='/favicon.png'
+				src='/logo2.jpg'
 				alt='AI avatar'
 				boxSize='40px'
 				borderRadius='full'

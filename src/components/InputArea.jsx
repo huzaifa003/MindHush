@@ -30,7 +30,6 @@ export default function InputArea({
 			flex='1'
 			w='full'
 			maxW={{ base: widthOnSS, md: widthOnLS }}
-			mb={4}
 			endElement={
 				<IconButton
 					variant='plain'

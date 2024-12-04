@@ -21,6 +21,7 @@ import { Field } from "@/components/ui/field";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Link, useNavigate } from "react-router";
 import { useAuth } from "@/context/AuthContext";
+import Logo from "@/components/Logo";
 
 const SignUpPage = () => {
 	const { login } = useAuth();
@@ -60,9 +61,7 @@ const SignUpPage = () => {
 					}}>
 					<VStack maxW='400px' mx='auto' gapY={10}>
 						<Box alignSelf='flex-start' w={logoWidth} mt={{ base: 10, md: 0 }}>
-							<Link to='/'>
-								<Image src='/logo.png' alt='Company Logo' />
-							</Link>
+							<Logo />
 						</Box>
 						<VStack align='stretch' spaceY={{ base: 6, md: 8 }} w='full'>
 							{/* Form Header */}

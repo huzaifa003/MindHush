@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Text, SimpleGrid, VStack, Badge } from "@chakra-ui/react";
+import { Box, Text, SimpleGrid, VStack, Badge, Image } from "@chakra-ui/react";
 import {
 	LuBrain,
 	LuBriefcase,
@@ -12,14 +12,15 @@ import InputArea from "./InputArea";
 
 export default function NewChat({ isDrawer }) {
 	const categories = [
-		{ name: "Addiction", icon: <LuBrain />, isPro: false },
-		{ name: "Parenting", icon: <LuUsers />, isPro: true },
-		{ name: "Mental Health", icon: <LuBrain />, isPro: false },
-		{ name: "Technology", icon: <LuSettings />, isPro: true },
-		{ name: "Financial Worries", icon: <LuDollarSign />, isPro: true },
-		{ name: "Confidence", icon: <LuHeart />, isPro: false },
-		{ name: "Relationships", icon: <LuUsers />, isPro: true },
-		{ name: "Workplace Conflicts", icon: <LuBriefcase />, isPro: false },
+		{ name: "Parenting", icon: "/icons/parenting_icon.svg", isPro: false },
+		{
+			name: "Mental Health",
+			icon: "/icons/mental_health_icon.svg",
+			isPro: false,
+		},
+		{ name: "Technology", icon: "/icons/technology_icon.svg", isPro: false },
+		{ name: "Financial", icon: "/icons/financial_icon.svg", isPro: false },
+		{ name: "Identity", icon: "/icons/user_icon.svg", isPro: false },
 	];
 
 	return (
@@ -37,8 +38,9 @@ export default function NewChat({ isDrawer }) {
 			<InputArea isNewChart={true} />
 
 			<SimpleGrid
-				columns={{ base: 2, md: 3, lg: 4 }}
+				columns={{ base: 2, md: 3, lg: 5 }}
 				gapY={6}
+				gapX={4}
 				mt={2}
 				pb={2}
 				maxW={{ base: "xs", sm: "sm", md: "3xl" }}
@@ -90,7 +92,11 @@ export default function NewChat({ isDrawer }) {
 										</Box>
 									</Badge>
 								)}
-								{category.icon}
+								{typeof category.icon === "string" ? (
+									<Image src={category.icon} alt={category.name} w={5} h={5} />
+								) : (
+									category.icon
+								)}
 							</Box>
 							<Text
 								fontSize='sm'

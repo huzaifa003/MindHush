@@ -19,6 +19,7 @@ import { LuKey, LuMail } from "react-icons/lu";
 import { PasswordInput } from "@/components/ui/password-input";
 import { useAuth } from "@/context/AuthContext";
 import { Link, useNavigate } from "react-router";
+import Logo from "@/components/Logo";
 
 const SignInPage = () => {
 	const { isAuthenticated, login } = useAuth();
@@ -41,7 +42,7 @@ const SignInPage = () => {
 	return (
 		<Container maxW='100vw' h='100vh' p={0} position='relative'>
 			<Box alignSelf='flex-start' w={logoWidth} mx={10} mt={4} mb={0}>
-				<Image src='/logo.png' alt='Company Logo' />
+				<Logo />
 			</Box>
 			{/* Flexbox layout */}
 			<Flex

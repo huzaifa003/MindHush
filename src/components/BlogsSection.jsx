@@ -8,41 +8,47 @@ import {
 	Image,
 	VStack,
 } from "@chakra-ui/react";
+import { useNavigate } from "react-router";
 
-const BlogCard = ({ image, title, number }) => (
-	<Box
-		position='relative'
-		flex='1'
-		maxW={{ base: "100%", md: "48%" }}
-		mb={{ base: 8, md: 0 }}
-		cursor='pointer'
-		transition='transform 0.2s'
-		_hover={{ transform: "scale(1.02)" }}>
-		<Image
-			src={image}
-			alt={title}
-			height={{ base: "250px", md: "400px" }} // Responsive image height
-			width='100%'
-			objectFit='cover'
-			borderRadius='lg'
-		/>
-		<VStack
-			position='absolute'
-			bottom={4}
-			left={4}
-			align='flex-start'
-			spacing={1}>
-			<Text color='white' fontSize={{ base: "sm", md: "lg" }}>
-				{" "}
-				{/* Responsive font size */}
-				Blog {number}
-			</Text>
-			<Text color='white' fontSize={{ base: "md", md: "lg" }} noOfLines={2}>
-				{title}
-			</Text>
-		</VStack>
-	</Box>
-);
+const BlogCard = ({ image, title, number }) => {
+	const navigate = useNavigate();
+
+	return (
+		<Box
+			position='relative'
+			flex='1'
+			maxW={{ base: "100%", md: "48%" }}
+			mb={{ base: 8, md: 0 }}
+			cursor='pointer'
+			transition='transform 0.2s'
+			_hover={{ transform: "scale(1.02)" }}
+			onClick={() => navigate(`/blogs/${number}`)}>
+			<Image
+				src={image}
+				alt={title}
+				height={{ base: "250px", md: "400px" }} // Responsive image height
+				width='100%'
+				objectFit='cover'
+				borderRadius='lg'
+			/>
+			<VStack
+				position='absolute'
+				bottom={4}
+				left={4}
+				align='flex-start'
+				spacing={1}>
+				<Text color='white' fontSize={{ base: "sm", md: "lg" }}>
+					{" "}
+					{/* Responsive font size */}
+					Blog {number}
+				</Text>
+				<Text color='white' fontSize={{ base: "md", md: "lg" }} noOfLines={2}>
+					{title}
+				</Text>
+			</VStack>
+		</Box>
+	);
+};
 
 const BlogsSection = () => {
 	const blogs = [

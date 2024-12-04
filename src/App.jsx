@@ -5,6 +5,7 @@ import SignUpPage from "./pages/SignUp";
 import PricingPlans from "./pages/PricingPlans";
 import Dashboard from "./pages/Dashboard";
 import LandingPage from "./pages/LandingPage";
+import BlogPost from "./pages/BlogPost";
 
 const App = () => {
 	return (
@@ -18,6 +19,7 @@ const App = () => {
 					<Route path='/login' element={<SignInPage />} />
 					<Route path='/signup' element={<SignUpPage />} />
 					<Route path='/pricing-plans' element={<PricingPlans />} />
+					<Route path='/blogs/:id' element={<BlogPost />} />
 				</Routes>
 			</Box>
 		</Flex>

@@ -20,6 +20,7 @@ const testimonials = [
 		author: "Christian Yaworsky",
 		role: "User",
 		videoUrl: "/path-to-video-1.mp4",
+		imgUrl: "/testimonials/testimonial-1.jpg",
 	},
 	{
 		id: 2,
@@ -28,6 +29,7 @@ const testimonials = [
 		author: "Alex Johnson",
 		role: "Professional",
 		videoUrl: "/path-to-video-2.mp4",
+		imgUrl: "/testimonials/testimonial-2.jpg",
 	},
 ];
 
@@ -87,7 +89,7 @@ const TestimonialSlider = () => {
 					<Box flex='1' w='100%'>
 						<AspectRatio ratio={16 / 9} borderRadius='lg' overflow='hidden'>
 							<Box position='relative'>
-								<video
+								{/* <video
 									key={testimonials[currentSlide].videoUrl}
 									width='100%'
 									height='auto'
@@ -98,7 +100,15 @@ const TestimonialSlider = () => {
 										type='video/mp4'
 									/>
 									Your browser does not support the video tag.
-								</video>
+								</video> */}
+								<Image
+									src={testimonials[currentSlide].imgUrl}
+									alt={testimonials[currentSlide].author}
+									w='100%'
+									h='100%'
+									objectFit='cover'
+									borderRadius='lg'
+								/>
 							</Box>
 						</AspectRatio>
 					</Box>

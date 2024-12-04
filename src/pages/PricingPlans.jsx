@@ -14,6 +14,7 @@ import AuthButtons from "@/components/AuthButtons";
 import PricingFeature from "@/components/PricingFeature";
 import PricingCards from "@/components/PricingCards";
 import { PRICING_PLANS } from "@/constants";
+import Logo from "@/components/Logo";
 
 const PricingPlans = () => {
 	const features = [
@@ -42,8 +43,8 @@ const PricingPlans = () => {
 
 	return (
 		<Box height='100vh' overflowY='auto' bg='gray.900'>
-			<HStack justifyContent='space-between' px={8} py={2}>
-				<Image src='/logo.png' alt='Company Logo' w={100} />
+			<HStack justifyContent='space-between' alignItems='center' px={8} py={2}>
+				<Logo />
 				<AuthButtons />
 			</HStack>
 			<Container maxW='breakpoint-xl' pt={8}>

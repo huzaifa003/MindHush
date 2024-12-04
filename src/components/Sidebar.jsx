@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router";
 import { useAuth } from "@/context/AuthContext";
 import EarnReferModal from "./EarnReferModal";
 import TokensBox from "./TokensBox";
+import Logo from "./Logo";
 
 const Sidebar = ({ categorizedChats, activeChat, setActiveChat }) => {
 	const { isAuthenticated } = useAuth();
@@ -22,16 +23,15 @@ const Sidebar = ({ categorizedChats, activeChat, setActiveChat }) => {
 			{/* Header Section */}
 			<VStack align='stretch' spacing={4} flexShrink={0}>
 				{/* Logo */}
-				<Box alignSelf='flex-start' w='80px' mb={10}>
-					<Image src='/logo.png' alt='Company Logo' />
-				</Box>
+				<Logo />
 
 				{/* New Chat Button */}
 				<Button
 					variant='outline'
 					border='1px solid #616161'
 					rounded='2xl'
-					onClick={() => navigate("/")}>
+					mt={10}
+					onClick={() => navigate("/c/new")}>
 					<LuPlus style={{ marginRight: "2px" }} />
 					Start New
 				</Button>

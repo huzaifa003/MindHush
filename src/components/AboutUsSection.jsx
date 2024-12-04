@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { Box, Grid, Heading, Text, VStack, Image } from "@chakra-ui/react";
 
 const FeatureCard = ({ icon, title, description }) => {
@@ -57,21 +57,41 @@ const AboutUsSection = () => {
 		},
 	];
 
+	const leftRef = useRef(null);
+
+	useEffect(() => {
+		const handleScroll = () => {
+			const scrollPosition = window.scrollY;
+			const leftElement = leftRef.current;
+
+			if (leftElement) {
+				leftElement.style.transform = `translateY(${scrollPosition}px)`;
+			}
+		};
+
+		window.addEventListener("scroll", handleScroll);
+
+		return () => {
+			window.removeEventListener("scroll", handleScroll);
+		};
+	}, []);
+
 	return (
-		<Box
-			bg='#09090C'
-			h={{ base: "auto", md: "100vh" }}
-			overflow='hidden'
-			id='about-us'
-			position='relative'
-			zIndex={3}>
+		<Box bg='#09090C' id='about-us' position='relative' zIndex={3}>
 			<Grid
 				templateColumns={{ base: "1fr", md: "1fr 1fr" }}
-				h='full'
+				minH='100vh'
 				justifyItems='center'
 				p={{ base: 4, md: 12 }}>
 				{/* Left Side - Fixed Content */}
-				<VStack p={4}>
+				<VStack
+					p={4}
+					ref={leftRef}
+					position={{ base: "static", md: "sticky" }}
+					top={0}
+					align='flex-start'
+					h={{ base: "auto", md: "100vh" }}
+					overflow='hidden'>
 					<Image
 						src='/stars_bg.svg'
 						alt='Background Stars'

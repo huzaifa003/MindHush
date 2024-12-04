@@ -51,7 +51,7 @@ const EarnReferModal = () => {
 								<BiMessageCheck size={24} color='#008080' />
 							</Box>
 							<DialogTitle>
-								<Text fontSize='lg' fontWeight='bold'>
+								<Text fontSize='3xl' color='white' fontWeight='semibold'>
 									Earn and Refer
 								</Text>
 							</DialogTitle>

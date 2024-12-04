@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from "react";
-import { VStack, Flex, Box } from "@chakra-ui/react";
+import { VStack, Flex, Box, Text } from "@chakra-ui/react";
 import ChatMessage from "./ChatMessage";
 import InputArea from "./InputArea";
 import { useLocation } from "react-router";
@@ -46,7 +46,7 @@ const ChattingArea = () => {
 				spacing={4}
 				overflowY='auto'
 				w='full'
-				h='80%'
+				h='78%'
 				pr={2}
 				pb={5}
 				css={{
@@ -68,6 +68,15 @@ const ChattingArea = () => {
 					widthOnLS='full'
 					onSubmitClick={onSubmitClick}
 				/>
+				<Text
+					fontSize='xx-small'
+					color='gray.500'
+					fontStyle='italic'
+					textAlign='center'
+					mt={2}>
+					MindHush.ai is not a licensed professional. For urgent or serious
+					concerns, please seek assistance from a qualified expert.
+				</Text>
 			</Box>
 		</Flex>
 	);
