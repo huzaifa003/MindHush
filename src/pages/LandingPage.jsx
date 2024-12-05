@@ -25,6 +25,7 @@ import BlogsSection from "@/components/BlogsSection";
 import FeaturesSection from "@/components/FeaturesSection";
 import Logo from "@/components/Logo";
 import { useNavigate } from "react-router";
+import { BiLogoTiktok } from "react-icons/bi";
 
 const LandingPage = () => {
 	const navigate = useNavigate();
@@ -130,8 +131,9 @@ const LandingPage = () => {
 							Your Path to Peace of Mind Starts Here
 						</Heading>
 						<Text fontSize='xs' color='gray.400' mx='auto'>
-							Our trusted companion for mental wellness.
-							<br /> Support for you, Made simple, the fastest path to a calmer,
+							Your trusted companion for mental wellness.
+							<br />
+							Offering simple, heartfelt support to guide you toward a calmer,
 							happier you.
 						</Text>
 
@@ -188,7 +190,7 @@ const LandingPage = () => {
 						/>
 						<StepCard
 							title='Talk Your Heart Out'
-							description='Write as many prompts you want to talk your heart out'
+							description='Let your mind find peace by having unlimited chats'
 							image='/steps/step-2.svg'
 						/>
 						<StepCard
@@ -277,9 +279,7 @@ const LandingPage = () => {
 
 							{/* Description */}
 							<Text color='gray.400' mb={8} maxW='400px'>
-								The first free end-to-end analytics service for the site,
-								designed to work with enterprises of various levels and business
-								segments.
+								Your Path to Peace of Mind Starts Here.
 							</Text>
 
 							{/* More About Us Link */}
@@ -302,55 +302,32 @@ const LandingPage = () => {
 
 							{/* Social Icons */}
 							<VStack align='flex-start' spacing={4} mt={16}>
-								<HStack gap={4} alignItems='flex-end'>
-									<VStack align='flex-start'>
-										<IconButton
-											aria-label='Odnoklassniki'
-											variant='ghost'
-											color='white'
-											rounded='full'
-											_hover={{ bg: "whiteAlpha.200" }}>
-											<Image
-												src='/icons/odnoklassniki_icon.svg'
-												alt='Odnoklassniki'
-											/>
-										</IconButton>
-										<IconButton
-											aria-label='VK'
-											variant='ghost'
-											color='white'
-											rounded='full'
-											_hover={{ bg: "whiteAlpha.200" }}>
-											<Image src='/icons/vk_icon.svg' alt='VK' />
-										</IconButton>
-										<IconButton
-											aria-label='Telegram'
-											variant='ghost'
-											color='white'
-											rounded='full'
-											_hover={{ bg: "whiteAlpha.200" }}>
-											<Image src='/icons/telegram_icon.svg' alt='Telegram' />
-										</IconButton>
-									</VStack>
-
-									<VStack spacing={4}>
-										<IconButton
-											aria-label='Facebook'
-											variant='ghost'
-											color='white'
-											rounded='full'
-											_hover={{ bg: "whiteAlpha.200" }}>
-											<Image src='/icons/facebook_icon.svg' alt='Facebook' />
-										</IconButton>
-										<IconButton
-											aria-label='Instagram'
-											variant='ghost'
-											color='white'
-											rounded='full'
-											_hover={{ bg: "whiteAlpha.200" }}>
-											<Image src='/icons/instagram_icon.svg' alt='Instagram' />
-										</IconButton>
-									</VStack>
+								<HStack gap={2}>
+									<IconButton
+										aria-label='TikTok'
+										variant='ghost'
+										color='white'
+										rounded='full'
+										_hover={{ bg: "whiteAlpha.200" }}>
+										<BiLogoTiktok
+											style={{
+												backgroundColor: "white",
+												color: "black",
+												padding: "10px",
+												width: "40px",
+												height: "40px",
+												borderRadius: "100%",
+											}}
+										/>
+									</IconButton>
+									<IconButton
+										aria-label='Instagram'
+										variant='ghost'
+										color='white'
+										rounded='full'
+										_hover={{ bg: "whiteAlpha.200" }}>
+										<Image src='/icons/instagram_icon.svg' alt='Instagram' />
+									</IconButton>
 								</HStack>
 							</VStack>
 						</Box>
@@ -366,7 +343,7 @@ const LandingPage = () => {
 								<Link
 									color='gray.400'
 									_hover={{ color: "white" }}
-									href='#about-us'
+									href='#our-mission'
 									fontSize={{ base: "sm", md: "md" }}>
 									About.
 								</Link>
@@ -397,16 +374,6 @@ const LandingPage = () => {
 									</Heading>
 									<Text color='gray.400'>+1 (999) 888-77-66</Text>
 									<Text color='gray.400'>hello@mindhush.com</Text>
-								</Box>
-
-								<Box>
-									<Heading
-										color='white'
-										fontSize={{ base: "lg", md: "2xl" }}
-										mb={4}>
-										Location
-									</Heading>
-									<Text color='gray.400'>xyz address and location</Text>
 								</Box>
 							</VStack>
 						</Box>

@@ -16,7 +16,7 @@ const BlogCard = ({ image, title, number }) => {
 	return (
 		<Box
 			position='relative'
-			flex='1'
+			flex='0 0 auto'
 			maxW={{ base: "100%", md: "48%" }}
 			mb={{ base: 8, md: 0 }}
 			cursor='pointer'
@@ -26,7 +26,7 @@ const BlogCard = ({ image, title, number }) => {
 			<Image
 				src={image}
 				alt={title}
-				height={{ base: "250px", md: "400px" }} // Responsive image height
+				height={{ base: "250px", md: "350px" }}
 				width='100%'
 				objectFit='cover'
 				borderRadius='lg'
@@ -75,7 +75,6 @@ const BlogsSection = () => {
 				mb={8}
 				alignItems='center'
 				justifyContent='space-between'
-				flexDirection='row'
 				textAlign={{ base: "center", md: "left" }}>
 				<Heading color='white' fontSize={{ base: "2xl", md: "3xl" }} flex='1'>
 					BLOGS
@@ -92,22 +91,28 @@ const BlogsSection = () => {
 			</Flex>
 
 			{/* Blog Cards */}
-			<Flex
+			<Box
 				maxW='7xl'
 				mx='auto'
-				justify='space-between'
-				flexDirection={{ base: "column", md: "row" }}
-				flexWrap='wrap'
-				gap={{ base: 4, md: 8 }}>
-				{blogs.map((blog, index) => (
-					<BlogCard
-						key={index}
-						image={blog.image}
-						title={blog.title}
-						number={blog.number}
-					/>
-				))}
-			</Flex>
+				overflowX='auto'
+				px={2}
+				py={4}
+				css={{
+					"&::-webkit-scrollbar": {
+						display: "none",
+					},
+				}}>
+				<Flex gap={4} justifyContent='space-between' flexDirection='row'>
+					{blogs.map((blog, index) => (
+						<BlogCard
+							key={index}
+							image={blog.image}
+							title={blog.title}
+							number={blog.number}
+						/>
+					))}
+				</Flex>
+			</Box>
 		</Box>
 	);
 };

@@ -21,7 +21,7 @@ const AboutUsSection = () => {
 	const features = [
 		{
 			icon: "/icons/health_disorder_icon.svg",
-			title: "Mental Health Disorders",
+			title: "Mental Health Support",
 			description:
 				"Gain personalized guidance and resources to help navigate stress, anxiety, depression, and other mental health challenges with care and understanding",
 		},
@@ -58,7 +58,7 @@ const AboutUsSection = () => {
 	];
 
 	return (
-		<Box bg='#09090C' id='about-us' position='relative' zIndex={3}>
+		<Box bg='#09090C' id='our-mission' position='relative' zIndex={3}>
 			<Grid
 				templateColumns={{ base: "1fr", md: "1fr 1fr" }}
 				templateRows={{ base: "auto auto", md: "1fr" }}
@@ -88,7 +88,7 @@ const AboutUsSection = () => {
 							color='white'
 							size={{ base: "xl", md: "2xl", lg: "4xl" }}
 							mb={4}>
-							About Us?
+							Our Mission
 						</Heading>
 						<Text
 							color='gray.400'
@@ -102,6 +102,14 @@ const AboutUsSection = () => {
 							and resilience. Whether you're looking for a listening ear,
 							practical coping strategies, or just a safe space to express your
 							feelings, we're here for you—24/7.
+						</Text>
+						<Text
+							fontSize='xx-small'
+							color='gray.500'
+							fontStyle='italic'
+							mt={2}>
+							MindHush.ai is not a licensed professional. For urgent or serious
+							concerns, please seek assistance from a qualified expert.
 						</Text>
 					</Box>
 				</VStack>
@@ -118,7 +126,7 @@ const AboutUsSection = () => {
 						gap={8}
 						position='absolute'
 						w='full'
-						animation={`scrollAnimation 30s linear infinite`}>
+						animation={`scrollAnimation 60s linear infinite`}>
 						{features.concat(features).map((feature, index) => (
 							<FeatureCard
 								key={index}

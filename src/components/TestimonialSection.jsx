@@ -49,7 +49,13 @@ const TestimonialSlider = () => {
 	};
 
 	return (
-		<Box py={[8, 16]} px={[4, 8]} id='testimonials' position='relative'>
+		<Box
+			py={[8, 16]}
+			px={[4, 8]}
+			id='testimonials'
+			position='relative'
+			w={["100%", "2/3"]}
+			mx='auto'>
 			<Box bg='#040608' p={[6, 12]} rounded='xl' position='relative'>
 				<Image
 					src='/stars_bg.svg'
@@ -85,38 +91,9 @@ const TestimonialSlider = () => {
 					rounded='xl'
 					direction={{ base: "column", md: "row-reverse" }}
 					gap={8}>
-					{/* Video on Top for small screens */}
-					<Box flex='1' w='100%'>
-						<AspectRatio ratio={16 / 9} borderRadius='lg' overflow='hidden'>
-							<Box position='relative'>
-								{/* <video
-									key={testimonials[currentSlide].videoUrl}
-									width='100%'
-									height='auto'
-									style={{ objectFit: "cover", borderRadius: "14px" }}
-									controls>
-									<source
-										src={testimonials[currentSlide].videoUrl}
-										type='video/mp4'
-									/>
-									Your browser does not support the video tag.
-								</video> */}
-								<Image
-									src={testimonials[currentSlide].imgUrl}
-									alt={testimonials[currentSlide].author}
-									w='100%'
-									h='100%'
-									objectFit='cover'
-									borderRadius='lg'
-								/>
-							</Box>
-						</AspectRatio>
-					</Box>
-
 					{/* Text on Left */}
 					<VStack
 						align='flex-start'
-						flex='1'
 						p={4}
 						borderRadius='lg'
 						spacing={4}
@@ -125,7 +102,12 @@ const TestimonialSlider = () => {
 							<Image src='/icons/quotes_icon.svg' alt='Quote' w={8} mb={2} />
 							{testimonials[currentSlide].quote}
 						</Text>
-						<VStack align={["center", "flex-start"]} flex='1' gap={0} mb={2}>
+						<VStack
+							align={["center", "flex-start"]}
+							flex='1'
+							gap={0}
+							mb={2}
+							w='full'>
 							<Text color='gray.500' fontSize={["sm", "md"]}>
 								{testimonials[currentSlide].author}
 							</Text>
@@ -135,7 +117,7 @@ const TestimonialSlider = () => {
 						</VStack>
 
 						{/* Navigation Buttons */}
-						<HStack justify={["center", "flex-start"]}>
+						<HStack justify={["center", "flex-start"]} w='full'>
 							<IconButton
 								aria-label='Previous Slide'
 								onClick={prevSlide}

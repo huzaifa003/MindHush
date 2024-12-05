@@ -7,7 +7,6 @@ import {
 	VStack,
 	HStack,
 	Separator,
-	Image,
 	SimpleGrid,
 } from "@chakra-ui/react";
 import AuthButtons from "@/components/AuthButtons";

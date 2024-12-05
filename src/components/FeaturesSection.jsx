@@ -16,7 +16,7 @@ const FeatureCard = ({ icon, title, description }) => {
 			p={{ base: 4, md: 6 }}
 			bg='#09090C'
 			borderRadius='lg'
-			boxShadow='0 4px 6px #602376'
+			boxShadow='0 4px 6px #754b9e'
 			_hover={{
 				transform: "scale(1.05)",
 			}}
@@ -61,7 +61,7 @@ export default function FeaturesSection() {
 			icon: "/medical-icon.png",
 			title: "Always Accessible",
 			description:
-				"The companion will help you fight through mental health disorders.",
+				"Available anytime, anywhere, providing consistent support for your mental health journey.",
 		},
 	];
 
