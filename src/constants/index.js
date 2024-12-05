@@ -8,7 +8,7 @@ export const PRICING_PLANS = [
 	{
 		title: "Preemium",
 		price: "9.99",
-		originalPrice: "1000",
+		originalPrice: "",
 		description: "Enjoy access to pro member features and unlimited chats",
 		isPopular: true,
 	},
