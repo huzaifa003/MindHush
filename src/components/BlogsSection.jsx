@@ -72,7 +72,7 @@ const BlogsSection = () => {
 			<Flex
 				maxW='7xl'
 				mx='auto'
-				mb={8}
+				mb={0}
 				alignItems='center'
 				justifyContent='space-between'
 				textAlign={{ base: "center", md: "left" }}>

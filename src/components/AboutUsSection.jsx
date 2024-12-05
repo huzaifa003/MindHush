@@ -1,5 +1,13 @@
 import React from "react";
-import { Box, Grid, Heading, Text, VStack, Image } from "@chakra-ui/react";
+import {
+	Box,
+	Grid,
+	Heading,
+	Text,
+	VStack,
+	Image,
+	Highlight,
+} from "@chakra-ui/react";
 
 const FeatureCard = ({ icon, title, description }) => {
 	return (
@@ -108,8 +116,18 @@ const AboutUsSection = () => {
 							color='gray.500'
 							fontStyle='italic'
 							mt={2}>
-							MindHush.ai is not a licensed professional. For urgent or serious
-							concerns, please seek assistance from a qualified expert.
+							<Highlight
+								query='MindHush.ai is not a licensed professional. For urgent or serious concerns, please seek assistance from a qualified expert.'
+								styles={{
+									px: "0.5",
+									bg: "#9e3c90",
+									color: "white",
+									textWrap: "wrap",
+								}}>
+								MindHush.ai is not a licensed professional. For urgent or
+								serious concerns, please seek assistance from a qualified
+								expert.
+							</Highlight>
 						</Text>
 					</Box>
 				</VStack>

@@ -68,7 +68,7 @@ export default function FeaturesSection() {
 	return (
 		<Box py={{ base: 12, md: 16 }} minH='100vh' position='relative'>
 			<Container maxW='6xl'>
-				<VStack textAlign='center' spacing={4} mb={12}>
+				<VStack textAlign='center' gap={0} mb={8}>
 					<Heading
 						textAlign='center'
 						fontSize={{ base: "sm", md: "lg" }}

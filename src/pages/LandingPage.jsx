@@ -164,8 +164,8 @@ const LandingPage = () => {
 				{/* Steps Section */}
 				<Box py={{ base: 12, md: 16 }} px={{ base: 4, md: 8 }}>
 					{/* Section Header */}
-					<VStack textAlign='center' mb={16}>
-						<Heading size='sm' fontWeight='light' color='gray.400' mb={2}>
+					<VStack textAlign='center' gap={0} mb={8}>
+						<Heading size='sm' fontWeight='light' color='gray.400' mb={0}>
 							How it works
 						</Heading>
 						<Text
@@ -239,7 +239,7 @@ const LandingPage = () => {
 						h={{ base: "100%", md: "90%" }}
 					/>
 					<Box minH='100vh' bg='#09090C' py={8} mb='96' id='pricing'>
-						<VStack textAlign='center' spacing={4} mb={12}>
+						<VStack textAlign='center' mb={6} gap={0}>
 							<Heading
 								textAlign='center'
 								fontSize={{ base: "sm", md: "lg" }}
@@ -267,7 +267,7 @@ const LandingPage = () => {
 			</Box>
 
 			{/* Footer Section */}
-			<Box bg='rgba(0, 24, 24, 0.95)' py={{ base: 12, md: 20 }}>
+			<Box bg='rgba(0, 24, 24, 0.95)' py={{ base: 12, md: 16 }}>
 				<Container maxW='7xl'>
 					<Grid
 						templateColumns={{ base: "1fr", md: "1.25fr 1fr" }}
