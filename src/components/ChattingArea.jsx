@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { VStack, Flex, Box, Text } from "@chakra-ui/react";
 import { useParams, useLocation, useNavigate } from "react-router";
 import ChatMessage from "./ChatMessage";
@@ -13,13 +13,16 @@ const ChattingArea = () => {
 	const { token } = useAuth(); // Get the authorization token
 	const [messages, setMessages] = useState([]);
 	const [chatId, setChatId] = useState(null); // Store the current chat ID
-	const hasFetchedMessages = useRef(false); // Track if messages have already been fetched
-	console.log("id", id, state);
+	const [isCreatingChat, setIsCreatingChat] = useState(false); // Track if chat creation is in progress
+
+	// Debugging logs for state and URL params
+	console.log("ChattingArea Initialized:", { id, state, chatId });
+
 	// Fetch all messages for a chat
 	const fetchMessages = async (chatId) => {
 		try {
+			console.log("Fetching messages for chatId:", chatId);
 			const response = await apiCallerAuthGet(`/api/chats/${chatId}/messages/`, token);
-			
 			if (response.status === 200) {
 				const formattedMessages = response.data.map((msg) => ({
 					message: msg.content,
@@ -35,79 +38,85 @@ const ChattingArea = () => {
 		}
 	};
 
-	// Handle new chat creation when navigating to `/c/new`
+	// Handle new chat creation or fetching messages for an existing chat
 	useEffect(() => {
-		const createChat = async () => {
-			if (!state || chatId) return; // Skip if no state or chat already exists
+		if (id) {
+			// If navigating to `/c/:id`, fetch messages for the existing chat
+			setChatId(id);
+			fetchMessages(id);
+		} else if (state && !chatId && !isCreatingChat) {
+			// If on `/c/new`, create a new chat using the state as the first prompt
+			const createChat = async () => {
+				setIsCreatingChat(true); // Prevent duplicate chat creation
 
-			try {
-				// Step 1: Create Chat
-				const createChatResponse = await apiCallerAuthPost(
-					"/api/chats/create/",
-					{ name: state.substring(0, 50) }, // Use the first 50 characters of the prompt as the chat name
-					token
-				);
+				try {
+					console.log("Creating new chat...");
 
-				if (createChatResponse.status === 201) {
-					const newChatId = createChatResponse.data.id;
-					setChatId(newChatId);
-
-					// Step 2: Add First Message to Chat
-					const addMessageResponse = await apiCallerAuthPost(
-						`/api/chats/${newChatId}/messages/add/`,
-						{ content: state }, // First prompt as the message content
+					// Step 1: Call Create Chat API
+					const createChatResponse = await apiCallerAuthPost(
+						"/api/chats/create/",
+						{ name: state.substring(0, 50) },
 						token
 					);
 
-					// Update chat with user's message and AI response
-					setMessages([
-						{ message: addMessageResponse.data.content, isUser: true },
-						{ message: addMessageResponse.data.ai_response, isUser: false },
-					]);
+					if (createChatResponse.status === 201) {
+						const newChatId = createChatResponse.data.id;
+						console.log("Chat created successfully with ID:", newChatId);
+						setChatId(newChatId);
 
-					alert("Chat created successfully!");
-					navigate(`/c/${newChatId}`); // Redirect to the newly created chat
-				} else {
-					throw new Error(createChatResponse.data?.detail || "Failed to create chat");
+						// Step 2: Add the First Message
+						const addMessageResponse = await apiCallerAuthPost(
+							`/api/chats/${newChatId}/messages/add/`,
+							{ content: state },
+							token
+						);
+
+						// Update Messages State
+						setMessages([
+							{ message: addMessageResponse.data.content, isUser: true },
+							{ message: addMessageResponse.data.ai_response, isUser: false },
+						]);
+
+						// Navigate to the new chat
+						navigate(`/c/${newChatId}`);
+					} else {
+						throw new Error(createChatResponse.data?.detail || "Failed to create chat");
+					}
+				} catch (error) {
+					console.error("Error creating chat:", error);
+					alert(`Error creating chat: ${error.message || "Please try again later."}`);
+				} finally {
+					setIsCreatingChat(false);
 				}
-			} catch (error) {
-				console.error("Error creating chat:", error);
-				alert(`Error: ${error.message || "Please try again later."}`);
-			}
-		};
+			};
 
-		if (!id) createChat(); // Only create a new chat if `id` is not in the URL
-	}, [id, state, chatId, token, navigate]);
-
-	// Fetch messages for an existing chat
-	useEffect(() => {
-		if (id) {
-			setChatId(id); // Set the chatId from the URL
-			fetchMessages(id);
-			hasFetchedMessages.current = true; // Prevent duplicate fetching
+			createChat();
 		}
-	}, [id]);
+	}, [id, state, chatId, token, navigate, isCreatingChat]);
 
 	// Handle user messages
 	const onSubmitClick = async (newMessage) => {
+		if (!chatId) {
+			alert("Chat is not properly initialized. Please try again.");
+			return;
+		}
+
 		setMessages((prev) => [...prev, { message: newMessage, isUser: true }]);
 
-		if (chatId) {
-			try {
-				const addMessageResponse = await apiCallerAuthPost(
-					`/api/chats/${chatId}/messages/add/`,
-					{ content: newMessage },
-					token
-				);
+		try {
+			const addMessageResponse = await apiCallerAuthPost(
+				`/api/chats/${chatId}/messages/add/`,
+				{ content: newMessage },
+				token
+			);
 
-				setMessages((prev) => [
-					...prev,
-					{ message: addMessageResponse.data.ai_response, isUser: false },
-				]);
-			} catch (error) {
-				console.error("Error adding message to chat:", error);
-				alert(`Error: ${error.message || "Unable to add message."}`);
-			}
+			setMessages((prev) => [
+				...prev,
+				{ message: addMessageResponse.data.ai_response, isUser: false },
+			]);
+		} catch (error) {
+			console.error("Error adding message to chat:", error);
+			alert(`Error adding message: ${error.message || "Unable to add message."}`);
 		}
 	};
 

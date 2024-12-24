@@ -13,7 +13,7 @@ import {
 	useBreakpointValue,
 	HStack,
 } from "@chakra-ui/react";
-import { setAuthToken } from "@/api/ApiCaller";
+import { apiCallerAuthGet, setAuthToken } from "@/api/ApiCaller";
 
 import { FaGoogle, FaFacebook } from "react-icons/fa";
 import { InputGroup } from "@/components/ui/input-group";
@@ -27,7 +27,7 @@ import { apiCallerPost } from "@/api/ApiCaller";
 const SignInPage = () => {
 
 	const navigate = useNavigate();
-	const { login } = useAuth();
+	const { login, profile, setProfileData } = useAuth();
 
 	const flexDirection = useBreakpointValue({ base: "column", md: "row" });
 	const formWidth = useBreakpointValue({ base: "100%", md: "40%" });
@@ -60,7 +60,18 @@ const SignInPage = () => {
 				// Save token in auth context or local storage
 				login({ token: response.data.access });
         		setAuthToken(response.data.access); // Set token globally
-				navigate("/c/new");
+				
+				const responseProfile = await apiCallerAuthGet("/api/users/profile/", response.data.access);
+
+				if (responseProfile?.status === 200) {
+					setProfileData(responseProfile.data);
+					console.log(responseProfile.data);
+					navigate("/c/new");
+				}
+				else{
+					throw new Error("Login failed. Please check your credentials.");
+				}
+				
 			} else {
 				throw new Error("Login failed. Please check your credentials.");
 			}

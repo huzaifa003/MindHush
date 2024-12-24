@@ -2,14 +2,16 @@ import React, { createContext, useContext, useState, useEffect } from "react";
 
 // Create AuthContext
 const AuthContext = createContext();
-
+const profileContext = createContext();
 // Hook to use the AuthContext
 export const useAuth = () => useContext(AuthContext);
+export const useProfile = () => useContext(profileContext);
 
 // Enhanced AuthProvider
 export const AuthProvider = ({ children }) => {
 	const [isAuthenticated, setIsAuthenticated] = useState(false);
 	const [token, setToken] = useState(null);
+	const [profile, setProfile] = useState(null);
 
 	// Persist token to local storage
 	useEffect(() => {
@@ -17,6 +19,11 @@ export const AuthProvider = ({ children }) => {
 		if (storedToken) {
 			setToken(storedToken);
 			setIsAuthenticated(true);
+		}
+
+		const storedProfile = JSON.parse(localStorage.getItem("profile"));
+		if (storedProfile) {
+			setProfile(storedProfile);
 		}
 	}, []);
 
@@ -27,6 +34,17 @@ export const AuthProvider = ({ children }) => {
 		localStorage.setItem("authToken", token); // Persist token
 	};
 
+	const setProfileData = (profile) => {
+		setProfile(profile);
+		localStorage.setItem("profile", JSON.stringify(profile));
+	}
+
+	const getProfileData = () => {
+		const storedProfile = localStorage.getItem("profile");
+		if (storedProfile) {
+			setProfile(JSON.parse(storedProfile));
+		}
+	}
 	// Logout function
 	const logout = () => {
 		setToken(null);
@@ -35,7 +53,7 @@ export const AuthProvider = ({ children }) => {
 	};
 
 	return (
-		<AuthContext.Provider value={{ isAuthenticated, token, login, logout }}>
+		<AuthContext.Provider value={{ isAuthenticated, token, login, logout, profile, setProfileData }}>
 			{children}
 		</AuthContext.Provider>
 	);
