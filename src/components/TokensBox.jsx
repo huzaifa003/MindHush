@@ -21,15 +21,18 @@ export default function TokensBox() {
 					</Text>
 					<Text fontSize='xs'>Tokens Used</Text>
 				</HStack>
-
-				<HStack>
+				{!profile?.is_premium && (
+					<HStack>
 					<Text fontSize='xs' fontWeight='bold'>
 						{profile?.daily_limit - profile?.credits_used_today > 0 ? profile?.daily_limit - profile?.credits_used_today : 0}
 					</Text>
 					<Text fontSize='xs'>Tokens Left</Text>
 				</HStack>
+				)}
+				
 			</VStack>
-
+			
+			{!profile?.is_premium && (
 			<ProgressRoot
 				colorPalette='teal'
 				defaultValue={(profile?.credits_used_today / profile?.daily_limit) * 100 < 100 ? (profile?.credits_used_today / profile?.daily_limit) * 100 : 100}
@@ -41,6 +44,7 @@ export default function TokensBox() {
 					<ProgressBar flex='1' rounded='full'  />
 				</HStack>
 			</ProgressRoot>
+			)}
 		</VStack>
 	);
 }

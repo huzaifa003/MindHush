@@ -82,7 +82,7 @@ const Dashboard = ({ isNewChart = false }) => {
 
 		chats.forEach((chat) => {
 			const chatDate = new Date(chat.created_at);
-			if (chatDate.toDateString() === today.toDateString()) {
+			if (chatDate === today) {
 				categories.Today.push(chat);
 			} else if (chatDate.toDateString() === yesterday.toDateString()) {
 				categories.Yesterday.push(chat);

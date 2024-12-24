@@ -1,3 +1,4 @@
+import { apiCallerAuthGet } from "@/api/ApiCaller";
 import React, { createContext, useContext, useState, useEffect } from "react";
 
 // Create AuthContext
@@ -45,6 +46,16 @@ export const AuthProvider = ({ children }) => {
 			setProfile(JSON.parse(storedProfile));
 		}
 	}
+
+	const updateProfile = (token) => {
+		apiCallerAuthGet("/api/users/profile", token).then((res) => {
+			if (res.status === 200) {
+				setProfileData(res.data);
+			}
+		}).catch((err) => {
+			console.log(err);
+		})
+	}
 	// Logout function
 	const logout = () => {
 		setToken(null);
@@ -53,7 +64,7 @@ export const AuthProvider = ({ children }) => {
 	};
 
 	return (
-		<AuthContext.Provider value={{ isAuthenticated, token, login, logout, profile, setProfileData }}>
+		<AuthContext.Provider value={{ isAuthenticated, token, login, logout, profile, setProfileData, updateProfile }}>
 			{children}
 		</AuthContext.Provider>
 	);
