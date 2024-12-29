@@ -54,7 +54,7 @@ const SignInPage = () => {
 		setIsLoading(true);
 		setError("");
 		try {
-			const response = await apiCallerPost("/api/token/", formData);
+			const response = await apiCallerPost("/api/users/login/", formData);
 		
 			if (response?.status === 200 && response?.data?.access) {
 				// Save token in auth context or local storage

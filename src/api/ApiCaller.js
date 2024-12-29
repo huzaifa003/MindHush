@@ -2,7 +2,7 @@ import axios from "axios";
 
 // Base URL setup
 // const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:8000";
-const BASE_URL = "http://localhost:8000";
+const BASE_URL = "https://api.mindhush.ai";
 axios.defaults.baseURL = BASE_URL;
 
 // Utility to handle requests
